@@ -1,19 +1,35 @@
 /* ============================================================
-   Silva & Associados Advocacia - style.css
-   Cores e fontes ficam nas variáveis do :root, no topo.
+   Moretti & Advogados Associados - style.css
+   Paleta séria: azul-marinho profundo + dourado discreto + creme.
+   Para trocar as cores, mexa apenas nas variáveis do :root.
    ============================================================ */
 
 :root {
-  --accent: #1B4965;
-  --accent-hover: #133449;
-  --accent-soft: rgba(27, 73, 101, 0.08);
+  /* Marca */
+  --navy: #0E2A47;
+  --navy-dark: #081B2E;
+  --navy-light: #17395C;
+  --gold: #B08D57;
+  --gold-light: #C9A876;
+  --gold-soft: rgba(176, 141, 87, 0.14);
+
+  /* Aliases usados no restante do arquivo */
+  --accent: #0E2A47;
+  --accent-hover: #081B2E;
+  --accent-soft: rgba(14, 42, 71, 0.08);
   --accent-contrast: #ffffff;
+
+  /* Superfícies */
   --bg: #ffffff;
+  --cream: #F6F3EE;
   --surface: #ffffff;
-  --surface-subtle: #f8fafc;
-  --surface-border: #e2e8f0;
-  --text-main: #333333;
-  --text-muted: #666666;
+  --surface-subtle: #F6F3EE;
+  --surface-border: #E4DFD6;
+
+  /* Texto */
+  --text-main: #2A2F36;
+  --text-muted: #5F6B76;
+
   --font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
@@ -33,67 +49,70 @@ body {
   overflow-x: hidden;
 }
 
-/* ---------- Cabeçalho e navegação ---------- */
+/* ---------- Cabeçalho e navegação (azul-marinho) ---------- */
 .site-header {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(255, 255, 255, 0.94);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--surface-border);
-  transition: box-shadow 0.25s ease;
+  background: var(--navy);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  transition: box-shadow 0.25s ease, background-color 0.25s ease;
 }
 
 .site-header.is-scrolled {
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.28);
 }
 
 .nav-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 1rem 1.5rem;
+  padding: 0.85rem 1.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
+/* ---------- Logo ---------- */
 .brand-logo {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.85rem;
   text-decoration: none;
-  color: var(--accent);
-  font-weight: 700;
-  font-size: 1.15rem;
-  letter-spacing: -0.01em;
 }
 
-.brand-logo-mark {
-  width: 36px;
-  height: 36px;
+.brand-logo-img {
+  height: 46px;
+  width: auto;
+  display: block;
   border-radius: 6px;
-  background: var(--accent);
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 700;
-  font-size: 1rem;
-  letter-spacing: 0.5px;
   flex-shrink: 0;
+}
+
+.brand-logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+}
+
+.brand-logo-name {
+  font-size: 1.08rem;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.01em;
 }
 
 .brand-logo-sub {
   font-weight: 400;
-  font-size: 0.95rem;
-  opacity: 0.85;
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.68);
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
 }
 
 .nav-desktop {
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: 1.5rem;
 }
 
 .nav-links {
@@ -106,7 +125,7 @@ body {
 }
 
 .nav-links a {
-  color: var(--text-main);
+  color: rgba(255, 255, 255, 0.82);
   text-decoration: none;
   font-size: 0.95rem;
   font-weight: 500;
@@ -116,12 +135,39 @@ body {
 
 .nav-links a:hover,
 .nav-links a:focus-visible {
-  color: var(--accent);
+  color: var(--gold-light);
+}
+
+/* ---------- Ícone social (header) ---------- */
+.social-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: rgba(255, 255, 255, 0.85);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  flex-shrink: 0;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.15s ease;
+}
+
+.social-icon svg {
+  width: 19px;
+  height: 19px;
+}
+
+.social-icon:hover {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--navy);
+  transform: translateY(-1px);
 }
 
 .nav-btn {
-  background-color: var(--accent);
-  color: var(--accent-contrast) !important;
+  background-color: var(--gold);
+  color: var(--navy) !important;
   padding: 0.625rem 1.25rem;
   border-radius: 6px;
   font-size: 0.9rem;
@@ -131,13 +177,13 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 2px 6px rgba(27, 73, 101, 0.2);
+  box-shadow: 0 2px 10px rgba(176, 141, 87, 0.35);
 }
 
 .nav-btn:hover {
-  background-color: var(--accent-hover);
+  background-color: var(--gold-light);
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(27, 73, 101, 0.3);
+  box-shadow: 0 4px 14px rgba(176, 141, 87, 0.45);
 }
 
 .nav-btn:active {
@@ -151,12 +197,12 @@ body {
   border: none;
   cursor: pointer;
   padding: 0.5rem;
-  color: var(--text-main);
+  color: #ffffff;
   border-radius: 6px;
 }
 
 .menu-toggle:focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 2px solid var(--gold);
   outline-offset: 2px;
 }
 
@@ -168,10 +214,10 @@ body {
 
 .mobile-menu-drawer {
   display: none;
-  background: #ffffff;
-  border-top: 1px solid var(--surface-border);
+  background: var(--navy-dark);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
   padding: 1.25rem 1.5rem 1.75rem;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
 }
 
 .mobile-menu-drawer.is-open {
@@ -188,7 +234,7 @@ body {
 }
 
 .mobile-nav-links a {
-  color: var(--text-main);
+  color: rgba(255, 255, 255, 0.9);
   text-decoration: none;
   font-size: 1.05rem;
   font-weight: 500;
@@ -197,7 +243,34 @@ body {
 }
 
 .mobile-nav-links a:hover {
-  color: var(--accent);
+  color: var(--gold-light);
+}
+
+.mobile-social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 6px;
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.mobile-social-link svg {
+  width: 19px;
+  height: 19px;
+}
+
+.mobile-social-link:hover {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--navy);
 }
 
 .mobile-nav-btn {
@@ -205,15 +278,14 @@ body {
   box-sizing: border-box;
 }
 
-/* ---------- Hero ---------- */
+/* ---------- Hero (fundo azul-marinho) ---------- */
 .hero-section {
   position: relative;
   padding: 5.5rem 1.5rem 6rem;
-  background: radial-gradient(circle at 90% 15%, rgba(27, 73, 101, 0.04) 0%, transparent 60%),
-              radial-gradient(circle at 10% 85%, rgba(27, 73, 101, 0.03) 0%, transparent 50%),
-              #ffffff;
+  background:
+    radial-gradient(circle at 85% 12%, rgba(176, 141, 87, 0.18) 0%, transparent 55%),
+    linear-gradient(160deg, #0E2A47 0%, #081B2E 100%);
   overflow: hidden;
-  border-bottom: 1px solid var(--surface-border);
 }
 
 .hero-container {
@@ -229,8 +301,9 @@ body {
   align-items: center;
   gap: 0.5rem;
   padding: 0.35rem 0.85rem;
-  background: var(--accent-soft);
-  color: var(--accent);
+  background: var(--gold-soft);
+  color: var(--gold-light);
+  border: 1px solid rgba(176, 141, 87, 0.35);
   border-radius: 999px;
   font-size: 0.85rem;
   font-weight: 600;
@@ -244,14 +317,14 @@ body {
   line-height: 1.15;
   font-weight: 700;
   letter-spacing: -0.025em;
-  color: var(--accent);
+  color: #ffffff;
   margin: 0 auto 1.5rem;
   max-width: 900px;
 }
 
 .hero-subtitle {
   font-size: clamp(1.05rem, 2vw, 1.25rem);
-  color: var(--text-muted);
+  color: rgba(255, 255, 255, 0.78);
   line-height: 1.6;
   max-width: 720px;
   margin: 0 auto 2.5rem;
@@ -266,10 +339,31 @@ body {
   flex-wrap: wrap;
 }
 
+.btn-primary-large {
+  background-color: var(--gold);
+  color: var(--navy) !important;
+  padding: 0.8rem 1.85rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgba(176, 141, 87, 0.35);
+}
+
+.btn-primary-large:hover {
+  background-color: var(--gold-light);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(176, 141, 87, 0.45);
+}
+
 .btn-secondary-custom {
   background-color: transparent;
-  color: var(--accent);
-  border: 1px solid var(--accent);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.4);
   padding: 0.75rem 1.5rem;
   border-radius: 6px;
   font-size: 0.95rem;
@@ -282,29 +376,9 @@ body {
 }
 
 .btn-secondary-custom:hover {
-  background-color: var(--accent-soft);
-  color: var(--accent);
-}
-
-.btn-primary-large {
-  background-color: var(--accent);
-  color: var(--accent-contrast) !important;
-  padding: 0.8rem 1.85rem;
-  border-radius: 6px;
-  font-size: 1rem;
-  font-weight: 600;
-  text-decoration: none;
-  transition: all 0.2s ease;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 14px rgba(27, 73, 101, 0.25);
-}
-
-.btn-primary-large:hover {
-  background-color: var(--accent-hover);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(27, 73, 101, 0.32);
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.7);
+  color: #ffffff;
 }
 
 /* Formas geométricas sutis do hero */
@@ -314,7 +388,7 @@ body {
   right: -80px;
   width: 320px;
   height: 320px;
-  border: 1px solid rgba(27, 73, 101, 0.12);
+  border: 1px solid rgba(176, 141, 87, 0.28);
   border-radius: 40px;
   transform: rotate(25deg);
   pointer-events: none;
@@ -327,7 +401,7 @@ body {
   left: -60px;
   width: 260px;
   height: 260px;
-  border: 1px dashed rgba(27, 73, 101, 0.15);
+  border: 1px dashed rgba(176, 141, 87, 0.22);
   border-radius: 30px;
   transform: rotate(-15deg);
   pointer-events: none;
@@ -353,8 +427,8 @@ body {
   font-size: 0.8rem;
   text-transform: uppercase;
   font-weight: 700;
-  letter-spacing: 1px;
-  color: var(--accent);
+  letter-spacing: 1.5px;
+  color: var(--gold);
   margin-bottom: 0.5rem;
   display: block;
 }
@@ -362,7 +436,7 @@ body {
 .section-title {
   font-size: clamp(1.8rem, 3.2vw, 2.35rem);
   font-weight: 700;
-  color: var(--accent);
+  color: var(--navy);
   letter-spacing: -0.015em;
   margin: 0 0 0.85rem 0;
 }
@@ -386,6 +460,7 @@ body {
 .area-card {
   background: #ffffff;
   border: 1px solid var(--surface-border);
+  border-top: 3px solid var(--navy);
   border-radius: 8px;
   padding: 2.25rem 1.75rem;
   transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
@@ -396,16 +471,16 @@ body {
 
 .area-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.05);
-  border-color: rgba(27, 73, 101, 0.35);
+  box-shadow: 0 14px 32px rgba(14, 42, 71, 0.12);
+  border-top-color: var(--gold);
 }
 
 .area-icon-wrap {
   width: 48px;
   height: 48px;
   border-radius: 8px;
-  background: var(--accent-soft);
-  color: var(--accent);
+  background: var(--navy);
+  color: var(--gold-light);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -420,7 +495,7 @@ body {
 .area-card h3 {
   font-size: 1.2rem;
   font-weight: 600;
-  color: var(--accent);
+  color: var(--navy);
   margin: 0 0 0.65rem;
   letter-spacing: -0.01em;
 }
@@ -432,11 +507,9 @@ body {
   line-height: 1.5;
 }
 
-/* ---------- Faixa de diferenciais ---------- */
+/* ---------- Faixa de diferenciais (azul-marinho) ---------- */
 .differentials-band {
-  background-color: var(--surface-subtle);
-  border-top: 1px solid var(--surface-border);
-  border-bottom: 1px solid var(--surface-border);
+  background: linear-gradient(160deg, #0E2A47 0%, #081B2E 100%);
   padding: 3.5rem 1.5rem;
 }
 
@@ -458,14 +531,13 @@ body {
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  background: #ffffff;
-  border: 1px solid var(--surface-border);
-  color: var(--accent);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(176, 141, 87, 0.45);
+  color: var(--gold-light);
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
 .diff-icon svg {
@@ -476,13 +548,13 @@ body {
 .diff-item h4 {
   font-size: 1.05rem;
   font-weight: 600;
-  color: var(--accent);
+  color: #ffffff;
   margin: 0 0 0.35rem;
 }
 
 .diff-item p {
   font-size: 0.92rem;
-  color: var(--text-muted);
+  color: rgba(255, 255, 255, 0.72);
   margin: 0;
   line-height: 1.45;
 }
@@ -502,12 +574,13 @@ body {
   border-radius: 8px;
   padding: 2.25rem 1.5rem;
   text-align: center;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
 .team-card:hover {
   transform: translateY(-3px);
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 12px 28px rgba(14, 42, 71, 0.1);
+  border-color: rgba(176, 141, 87, 0.5);
 }
 
 .team-avatar {
@@ -515,9 +588,9 @@ body {
   height: 96px;
   border-radius: 50%;
   margin: 0 auto 1.25rem;
-  background: var(--accent-soft);
-  border: 2px solid var(--accent);
-  color: var(--accent);
+  background: var(--navy);
+  border: 3px solid var(--gold);
+  color: var(--gold-light);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -536,18 +609,18 @@ body {
 .team-name {
   font-size: 1.15rem;
   font-weight: 700;
-  color: var(--accent);
+  color: var(--navy);
   margin: 0 0 0.25rem;
 }
 
 .team-oab {
   font-size: 0.85rem;
-  color: var(--text-muted);
-  font-weight: 500;
+  color: var(--navy);
+  font-weight: 600;
   margin: 0 0 0.75rem;
   display: inline-block;
   padding: 0.15rem 0.6rem;
-  background: #f1f5f9;
+  background: var(--gold-soft);
   border-radius: 4px;
 }
 
@@ -559,9 +632,9 @@ body {
   line-height: 1.4;
 }
 
-/* ---------- Contato ---------- */
+/* ---------- Contato (fundo creme) ---------- */
 .contact-section {
-  background-color: var(--surface-subtle);
+  background-color: var(--cream);
   border-top: 1px solid var(--surface-border);
 }
 
@@ -579,7 +652,7 @@ body {
   border: 1px solid var(--surface-border);
   border-radius: 8px;
   padding: 2.25rem 2rem;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+  box-shadow: 0 6px 20px rgba(14, 42, 71, 0.06);
 }
 
 .form-group {
@@ -613,8 +686,8 @@ body {
 
 .form-control:focus {
   outline: none;
-  border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(27, 73, 101, 0.12);
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px var(--gold-soft);
 }
 
 textarea.form-control {
@@ -630,8 +703,8 @@ textarea.form-control {
 
 .form-submit-btn {
   width: 100%;
-  background-color: var(--accent);
-  color: var(--accent-contrast);
+  background-color: var(--navy);
+  color: #ffffff;
   border: none;
   padding: 0.85rem 1.5rem;
   border-radius: 6px;
@@ -651,7 +724,7 @@ textarea.form-control {
 }
 
 .form-submit-btn:hover {
-  background-color: var(--accent-hover);
+  background-color: var(--navy-dark);
 }
 
 .form-submit-btn:active {
@@ -680,26 +753,26 @@ textarea.form-control {
   border: 1px solid #fecaca;
 }
 
-/* Coluna de informações de contato */
+/* Coluna de informações de contato (card escuro) */
 .contact-info-card {
-  background: #ffffff;
-  border: 1px solid var(--surface-border);
+  background: var(--navy);
+  border: 1px solid var(--navy-dark);
   border-radius: 8px;
   padding: 2.25rem 2rem;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+  box-shadow: 0 10px 28px rgba(14, 42, 71, 0.2);
 }
 
 .contact-info-title {
   font-size: 1.3rem;
   font-weight: 700;
-  color: var(--accent);
+  color: #ffffff;
   margin: 0 0 1.25rem;
 }
 
 .contact-info-list {
   list-style: none;
   padding: 0;
-  margin: 0 0 2rem;
+  margin: 0;
   display: flex;
   flex-direction: column;
   gap: 1.35rem;
@@ -715,8 +788,8 @@ textarea.form-control {
   width: 34px;
   height: 34px;
   border-radius: 6px;
-  background: var(--accent-soft);
-  color: var(--accent);
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--gold-light);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -733,57 +806,101 @@ textarea.form-control {
   font-size: 0.85rem;
   text-transform: uppercase;
   letter-spacing: 0.4px;
-  color: var(--text-muted);
+  color: var(--gold-light);
   margin-bottom: 0.15rem;
 }
 
 .contact-info-text span,
 .contact-info-text a {
   font-size: 0.95rem;
-  color: var(--text-main);
+  color: rgba(255, 255, 255, 0.88);
   text-decoration: none;
   line-height: 1.4;
 }
 
 .contact-info-text a:hover {
-  color: var(--accent);
+  color: var(--gold-light);
   text-decoration: underline;
 }
 
-.whatsapp-btn {
-  width: 100%;
+/* ---------- Botão flutuante do WhatsApp ---------- */
+.whatsapp-float {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
   background: #25D366;
-  color: #ffffff !important;
-  padding: 0.8rem 1.25rem;
-  border-radius: 6px;
-  font-size: 0.95rem;
-  font-weight: 600;
-  text-decoration: none;
-  display: inline-flex;
+  color: #ffffff;
+  display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
-  box-sizing: border-box;
-  transition: background-color 0.2s ease, transform 0.15s ease;
-  box-shadow: 0 2px 8px rgba(37, 211, 102, 0.2);
+  box-shadow: 0 4px 16px rgba(37, 211, 102, 0.45);
+  z-index: 999;
+  text-decoration: none;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+  animation: whatsapp-entrance 0.5s ease 0.8s backwards;
 }
 
-.whatsapp-btn svg {
-  width: 20px;
-  height: 20px;
-}
-
-.whatsapp-btn:hover {
+.whatsapp-float:hover {
   background: #20ba5a;
-  transform: translateY(-1px);
+  transform: translateY(-3px) scale(1.05);
 }
 
-/* ---------- Rodapé ---------- */
+.whatsapp-float svg {
+  width: 32px;
+  height: 32px;
+  position: relative;
+}
+
+.whatsapp-float::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: rgba(37, 211, 102, 0.45);
+  animation: whatsapp-pulse 2.2s ease-out infinite;
+}
+
+@keyframes whatsapp-pulse {
+  0%   { transform: scale(1);   opacity: 0.7; }
+  70%  { transform: scale(1.6); opacity: 0; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+
+@keyframes whatsapp-entrance {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.whatsapp-float-tooltip {
+  position: absolute;
+  right: 74px;
+  top: 50%;
+  transform: translateY(-50%) translateX(6px);
+  background: var(--navy-dark);
+  color: #ffffff;
+  font-size: 0.85rem;
+  font-weight: 500;
+  padding: 0.55rem 0.9rem;
+  border-radius: 8px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.whatsapp-float:hover .whatsapp-float-tooltip {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0);
+}
+
+/* ---------- Rodapé (azul-marinho escuro) ---------- */
 .site-footer {
-  background: #ffffff;
-  border-top: 1px solid var(--surface-border);
+  background: var(--navy-dark);
   padding: 3.5rem 1.5rem 2rem;
-  color: var(--text-muted);
+  color: rgba(255, 255, 255, 0.7);
   font-size: 0.88rem;
 }
 
@@ -798,21 +915,53 @@ textarea.form-control {
   align-items: flex-start;
   gap: 2rem;
   padding-bottom: 2rem;
-  border-bottom: 1px solid var(--surface-border);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   flex-wrap: wrap;
 }
 
 .footer-brand h4 {
   font-size: 1.2rem;
   font-weight: 700;
-  color: var(--accent);
+  color: #ffffff;
   margin: 0 0 0.4rem;
 }
 
 .footer-brand p {
   margin: 0;
-  color: var(--text-muted);
+  color: rgba(255, 255, 255, 0.6);
   font-size: 0.9rem;
+}
+
+/* ---------- Ícones sociais (rodapé) ---------- */
+.footer-social {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1.1rem;
+}
+
+.footer-social a {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.8);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.15s ease;
+}
+
+.footer-social a svg {
+  width: 18px;
+  height: 18px;
+}
+
+.footer-social a:hover {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--navy);
+  transform: translateY(-1px);
 }
 
 .footer-links {
@@ -825,21 +974,21 @@ textarea.form-control {
 }
 
 .footer-links a {
-  color: var(--text-main);
+  color: rgba(255, 255, 255, 0.82);
   text-decoration: none;
   font-weight: 500;
   transition: color 0.2s;
 }
 
 .footer-links a:hover {
-  color: var(--accent);
+  color: var(--gold-light);
 }
 
 .footer-legal-notice {
   padding: 1.75rem 0 1.25rem;
   font-size: 0.8rem;
   line-height: 1.55;
-  color: #718096;
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .footer-bottom {
@@ -847,7 +996,7 @@ textarea.form-control {
   justify-content: space-between;
   align-items: center;
   padding-top: 1.25rem;
-  border-top: 1px solid #f1f5f9;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
   font-size: 0.82rem;
   flex-wrap: wrap;
   gap: 0.75rem;
@@ -878,6 +1027,15 @@ textarea.form-control {
   .menu-toggle {
     display: flex;
   }
+  .brand-logo-img {
+    height: 38px;
+  }
+  .brand-logo-name {
+    font-size: 0.98rem;
+  }
+  .brand-logo-sub {
+    font-size: 0.72rem;
+  }
   .areas-grid {
     grid-template-columns: 1fr;
   }
@@ -897,6 +1055,19 @@ textarea.form-control {
   .section-wrap {
     padding: 4rem 1.25rem;
   }
+  .whatsapp-float {
+    width: 54px;
+    height: 54px;
+    bottom: 18px;
+    right: 18px;
+  }
+  .whatsapp-float svg {
+    width: 28px;
+    height: 28px;
+  }
+  .whatsapp-float-tooltip {
+    display: none;
+  }
 }
 
 /* ---------- Animação de entrada ---------- */
@@ -913,7 +1084,7 @@ textarea.form-control {
 
 /* ---------- Impressão ---------- */
 @media print {
-  .site-header, .hero-actions, .form-submit-btn, .whatsapp-btn, .menu-toggle {
+  .site-header, .hero-actions, .form-submit-btn, .whatsapp-float, .menu-toggle, .footer-social {
     display: none !important;
   }
   body {
