@@ -8,22 +8,13 @@
   /* Marca */
   --navy: #0E2A47;
   --navy-dark: #081B2E;
-  --navy-light: #17395C;
   --gold: #B08D57;
   --gold-light: #C9A876;
   --gold-soft: rgba(176, 141, 87, 0.14);
 
-  /* Aliases usados no restante do arquivo */
-  --accent: #0E2A47;
-  --accent-hover: #081B2E;
-  --accent-soft: rgba(14, 42, 71, 0.08);
-  --accent-contrast: #ffffff;
-
   /* Superfícies */
   --bg: #ffffff;
   --cream: #F6F3EE;
-  --surface: #ffffff;
-  --surface-subtle: #F6F3EE;
   --surface-border: #E4DFD6;
 
   /* Texto */
@@ -31,6 +22,13 @@
   --text-muted: #5F6B76;
 
   --font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Reset de dimensionamento: largura inclui padding e borda */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
 html {
@@ -46,7 +44,21 @@ body {
   line-height: 1.6;
   background-color: var(--bg);
   color: var(--text-main);
-  overflow-x: hidden;
+  /* clip evita rolagem horizontal sem quebrar o header sticky */
+  overflow-x: clip;
+}
+
+/* Compensa a altura do header fixo ao navegar por âncoras */
+section[id] {
+  scroll-margin-top: 90px;
+}
+
+/* Contorno de foco visível para navegação por teclado */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+  border-radius: 4px;
 }
 
 /* ---------- Cabeçalho e navegação (azul-marinho) ---------- */
@@ -201,11 +213,6 @@ body {
   border-radius: 6px;
 }
 
-.menu-toggle:focus-visible {
-  outline: 2px solid var(--gold);
-  outline-offset: 2px;
-}
-
 .menu-toggle svg {
   display: block;
   width: 24px;
@@ -275,7 +282,6 @@ body {
 
 .mobile-nav-btn {
   width: 100%;
-  box-sizing: border-box;
 }
 
 /* ---------- Hero (fundo azul-marinho) ---------- */
@@ -559,12 +565,12 @@ body {
   line-height: 1.45;
 }
 
-/* ---------- Equipe ---------- */
+/* ---------- Equipe (grid 2x2) ---------- */
 .team-grid {
-  max-width: 1100px;
+  max-width: 820px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 2rem;
 }
 
@@ -590,13 +596,6 @@ body {
   margin: 0 auto 1.25rem;
   background: var(--navy);
   border: 3px solid var(--gold);
-  color: var(--gold-light);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.6rem;
-  font-weight: 700;
-  letter-spacing: 0.5px;
   overflow: hidden;
 }
 
@@ -604,6 +603,7 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: block;
 }
 
 .team-name {
@@ -673,7 +673,6 @@ body {
 
 .form-control {
   width: 100%;
-  box-sizing: border-box;
   padding: 0.7rem 0.85rem;
   border: 1px solid var(--surface-border);
   border-radius: 6px;
@@ -693,6 +692,18 @@ body {
 textarea.form-control {
   resize: vertical;
   min-height: 110px;
+}
+
+/* Seta customizada do select, igual em todos os navegadores */
+select.form-control {
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  padding-right: 2.5rem;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23B08D57' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.85rem center;
+  background-size: 15px;
 }
 
 .form-row {
@@ -729,6 +740,11 @@ textarea.form-control {
 
 .form-submit-btn:active {
   transform: translateY(1px);
+}
+
+.form-submit-btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
 }
 
 .form-feedback {
@@ -1012,8 +1028,9 @@ textarea.form-control {
     gap: 1.5rem;
   }
   .team-grid {
-    grid-template-columns: 1fr;
-    max-width: 480px;
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 820px;
+    gap: 1.5rem;
   }
   .contact-layout {
     grid-template-columns: 1fr;
@@ -1038,6 +1055,11 @@ textarea.form-control {
   }
   .areas-grid {
     grid-template-columns: 1fr;
+  }
+  .team-grid {
+    grid-template-columns: 1fr;
+    max-width: 420px;
+    gap: 1.5rem;
   }
   .form-row {
     grid-template-columns: 1fr;
@@ -1082,16 +1104,88 @@ textarea.form-control {
   transform: translateY(0);
 }
 
+/* ---------- Acessibilidade: respeita quem reduz movimento ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .fade-up {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 /* ---------- Impressão ---------- */
 @media print {
-  .site-header, .hero-actions, .form-submit-btn, .whatsapp-float, .menu-toggle, .footer-social {
+  .site-header,
+  .hero-actions,
+  .form-submit-btn,
+  .whatsapp-float,
+  .menu-toggle,
+  .footer-social {
     display: none !important;
   }
+
   body {
     background: #fff;
     color: #000;
   }
-  .hero-section, .section-wrap, .differentials-band {
+
+  /* Fundos escuros não são impressos: força texto escuro */
+  .hero-section,
+  .differentials-band,
+  .contact-info-card,
+  .site-footer {
+    background: #fff !important;
+    border-color: #ccc !important;
+  }
+
+  .hero-title,
+  .hero-subtitle,
+  .hero-badge,
+  .diff-item h4,
+  .diff-item p,
+  .contact-info-title,
+  .contact-info-text strong,
+  .contact-info-text span,
+  .contact-info-text a,
+  .footer-brand h4,
+  .footer-brand p,
+  .footer-links a,
+  .footer-legal-notice,
+  .footer-bottom {
+    color: #000 !important;
+  }
+
+  .hero-section,
+  .section-wrap,
+  .differentials-band {
     padding: 1.5rem 0;
   }
+}
+
+/* ---------- Contador de caracteres do formulário ---------- */
+.char-counter {
+  margin-top: 0.35rem;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  text-align: right;
+  transition: color 0.2s ease;
+}
+
+.char-counter.is-below-min,
+.char-counter.is-warning {
+  color: #b45309;
+}
+
+.char-counter.is-limit {
+  color: #b91c1c;
+  font-weight: 600;
 }

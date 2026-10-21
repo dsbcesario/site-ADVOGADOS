@@ -3,15 +3,37 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Moretti & Advogados Associados</title>
 
-  git add .
-git commit -m "Site com logo, favicon, Instagram e botão flutuante"
-git push -u origin main<!-- Favicon -->
+  <title>Moretti & Advogados Associados</title>
+  <meta name="description" content="Advocacia estratégica, personalizada e transparente em São José do Rio Preto/SP. Especialistas em Direito Cível, Empresarial, Família, Trabalhista e Previdenciário.">
+  <meta name="author" content="Moretti & Advogados Associados">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://dsbcesario.github.io/site-ADVOGADOS/">
+
+  <!-- Cor da barra do navegador no celular -->
+  <meta name="theme-color" content="#0E2A47">
+
+  <!-- Open Graph (WhatsApp, Facebook, LinkedIn) -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="Moretti & Advogados Associados">
+  <meta property="og:url" content="https://dsbcesario.github.io/site-ADVOGADOS/">
+  <meta property="og:title" content="Moretti & Advogados Associados">
+  <meta property="og:description" content="Advocacia estratégica, personalizada e transparente em São José do Rio Preto/SP. Especialistas em Direito Cível, Empresarial, Família, Trabalhista e Previdenciário.">
+  <meta property="og:image" content="https://dsbcesario.github.io/site-ADVOGADOS/img/capa.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Logo do escritório Moretti & Advogados Associados">
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Moretti & Advogados Associados">
+  <meta name="twitter:description" content="Advocacia estratégica, personalizada e transparente em São José do Rio Preto/SP.">
+  <meta name="twitter:image" content="https://dsbcesario.github.io/site-ADVOGADOS/img/capa.png">
+
+  <!-- Favicon -->
   <link rel="icon" type="image/png" href="img/favicon.png">
   <link rel="apple-touch-icon" href="img/favicon.png">
-
-  <meta name="description" content="Advocacia estratégica, personalizada e transparente em São José do Rio Preto/SP. Especialistas em Direito Cível, Empresarial, Família, Trabalhista e Previdenciário.">
 
   <!-- Fonte externa (Google Fonts) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -273,20 +295,27 @@ git push -u origin main<!-- Favicon -->
       <div class="contact-layout">
         <!-- Formulário -->
         <div class="contact-card fade-up">
-          <form id="contactForm" novalidate>
+          <form id="contactForm" action="https://formsubmit.co/ajax/moretti.escritorio@gmail.com" method="POST" novalidate>
+
+            <!-- Configurações do envio -->
+            <input type="hidden" name="_subject" value="Novo contato pelo site - Moretti & Advogados">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+
             <div class="form-group">
               <label for="nome">Nome completo <span class="req" aria-hidden="true">*</span></label>
-              <input type="text" id="nome" name="nome" class="form-control" placeholder="Seu nome completo" required>
+              <input type="text" id="nome" name="nome" class="form-control" placeholder="Seu nome completo" maxlength="80" autocomplete="name" required>
             </div>
 
             <div class="form-row">
               <div class="form-group">
                 <label for="email">E-mail <span class="req" aria-hidden="true">*</span></label>
-                <input type="email" id="email" name="email" class="form-control" placeholder="seu@email.com" required>
+                <input type="email" id="email" name="email" class="form-control" placeholder="seu@email.com" autocomplete="email" required>
               </div>
               <div class="form-group">
                 <label for="telefone">Telefone / WhatsApp <span class="req" aria-hidden="true">*</span></label>
-                <input type="tel" id="telefone" name="telefone" class="form-control" placeholder="(17) 99999-9999" required>
+                <input type="tel" id="telefone" name="telefone" class="form-control" placeholder="(17) 99999-9999" inputmode="numeric" maxlength="15" autocomplete="tel" required>
               </div>
             </div>
 
@@ -306,7 +335,8 @@ git push -u origin main<!-- Favicon -->
 
             <div class="form-group">
               <label for="mensagem">Mensagem / Resumo do caso <span class="req" aria-hidden="true">*</span></label>
-              <textarea id="mensagem" name="mensagem" class="form-control" rows="4" placeholder="Descreva brevemente sua situação..." required></textarea>
+              <textarea id="mensagem" name="mensagem" class="form-control" rows="4" maxlength="1500" placeholder="Descreva brevemente sua situação..." required></textarea>
+              <div class="char-counter" id="charCounter" aria-live="polite">0 / 1500</div>
             </div>
 
             <button type="submit" class="form-submit-btn" id="submitBtn">
@@ -397,7 +427,7 @@ git push -u origin main<!-- Favicon -->
       <div class="footer-top">
         <div class="footer-brand">
           <h4>Moretti & Advogados Associados</h4>
-          <p>Sociedade de Advogados devidamente inscrita na OAB/SP sob o nº 45.890</p>
+          <p>Sociedade de Advogados devidamente inscrita na OAB/SP sob o nº 41.767</p>
           <div class="footer-social">
             <a href="https://www.instagram.com/morettieadvogadosassociados/" target="_blank" rel="noopener noreferrer" aria-label="Instagram do escritório">
               <svg fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
